@@ -1,0 +1,32 @@
+{
+  "name": "api-wild-league",
+  "version": "1.0.0",
+  "description": "Testing an api for wild-league",
+  "scripts": {
+    "start": "ts-node-dev --transpile-only --respawn --ignore-watch node_modules src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ropoko/api-wild-league.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ropoko/api-wild-league/issues"
+  },
+  "homepage": "https://github.com/ropoko/api-wild-league#readme",
+  "dependencies": {
+    "@prisma/client": "^4.7.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "prisma": "^4.7.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/node": "^18.11.15"
+  }
+}
