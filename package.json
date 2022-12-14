@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Testing an api for wild-league",
   "scripts": {
-    "start": "ts-node-dev --transpile-only --respawn --ignore-watch node_modules src/server.ts"
+    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,10 @@
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.8.0",
     "prisma": "^4.7.1",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^4.9.4"
+    "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
+		"typescript": "^4.9.4",
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.14",
     "@types/jsonwebtoken": "^8.5.9",

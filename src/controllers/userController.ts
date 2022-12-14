@@ -1,36 +1,30 @@
 import { Request, Response } from 'express';
 import { User } from '../entities/user';
-import { IUserRepository } from '../repositories/IUserRepository';
 import bcrypt from 'bcryptjs';
 import { UserRepository } from '../repositories/prisma/userRepository';
-import { IMailProvider } from '../providers/IMailProvider';
 import { MailProvider } from '../providers/mail/mailProvider';
 
 export class UserController {
-	private userRepository: IUserRepository;
-	private mailProvider: IMailProvider;
-
-	constructor() {
-		this.userRepository = new UserRepository();
-		this.mailProvider = new MailProvider();
-	}
-
-	async create(req: Request, res: Response) {
+	async create (req: Request, res: Response) {
 		const { nickname, email, password } = req.body as User;
 
-		const userAlreadyExists = await this.userRepository.findByNickname(nickname);
+		const userRepository = new UserRepository();
+
+		const userAlreadyExists = await userRepository.findByNickname(nickname);
 
 		if (userAlreadyExists) {
-			return res.status(409).json('nickname being used');
+			return res.status(409).json({ error: 'nickname already used' });
 		}
 
 		const hashed_password = await bcrypt.hash(password, 10);
 
-		const user = new User({nickname, email, password: hashed_password });
+		const user = new User({ nickname, email, password: hashed_password });
 
-		await this.userRepository.create(user);
+		await userRepository.create(user);
 
-		await this.mailProvider.sendMail({
+		const mailProvider = new MailProvider();
+
+		await mailProvider.sendMail({
 			to: {
 				email,
 				name: nickname
@@ -42,5 +36,7 @@ export class UserController {
 			subject: 'Welcome to Wild League',
 			body: '<p>Soon you will be able to try the game in the alpha version</p>'
 		});
+
+		return res.status(201).json(user);
 	}
 }
