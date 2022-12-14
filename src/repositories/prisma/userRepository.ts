@@ -18,7 +18,7 @@ export class UserRepository implements IUserRepository {
 	async create(model: User): Promise<void> {
 		await this.prismaClient.user.create({
 			data: model
-		})
+		});
 	}
 
 	async update(model: User): Promise<void> {

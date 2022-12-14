@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import jwt, { TokenExpiredError } from 'jsonwebtoken'
+import jwt, { TokenExpiredError } from 'jsonwebtoken';
 
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
 	const token = req.headers['x-access-token'] as string;
@@ -24,6 +24,6 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
 	}
 
 	return next();
-}
+};
 
 export { authMiddleware };

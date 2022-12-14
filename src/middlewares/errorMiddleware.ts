@@ -5,6 +5,6 @@ const errorMiddleware = (err: Error, req: Request, res: Response) => {
 		code: err.name,
 		description: err.message
 	});
-}
+};
 
 export { errorMiddleware };
