@@ -39,4 +39,12 @@ export class UserController {
 
 		return res.status(201).json(user);
 	}
+
+	async fetchAll(req: Request, res: Response) {
+		const userRepository = new UserRepository();
+
+		const users = await userRepository.fetch();
+
+		return res.status(200).json(users);
+	}
 }

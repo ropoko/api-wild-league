@@ -3,6 +3,6 @@ export interface IRepository<T> {
 	update(model: T): Promise<void>;
 	delete(model: T): Promise<void>;
 	deleteById(id: number): Promise<void>;
-	fetch(): Promise<T[]>;
+	fetch(): Promise<Partial<T>[]>;
 	fetchById(id: number): Promise<T>;
 }

@@ -39,7 +39,10 @@ export class UserRepository implements IUserRepository {
 	}
 
 	async fetch(): Promise<User[]> {
-		return await this.prismaClient.user.findMany();
+		const users = await this.prismaClient.user.findMany();
+		users.map((u) => delete u.password);
+
+		return users;
 	}
 
 	async fetchById(id: number): Promise<User> {
